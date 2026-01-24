@@ -136,6 +136,10 @@ Use calendar days.
 
 If there are zero active users, ARPU should be NULL.
 
+````
+table name = orders
+column names = order_date, order_id, user_id, order_amount
+
 **Answer-3**
 
 ```sql
@@ -158,9 +162,61 @@ round((sum(order_amount)*1.0)/count(distinct user_id),2) as rolling_7_day_ARPU
 from rolling_orders
 group by reporting_date
 order by reporting_date
+````
+
+**Summary**
+
+> I constructed a day-level table where each row represents a reporting day, joined to all the orders in its 7-day lookback window. Then I calculated revenue by summing all the order amounts but users are counted using COUNT(DISTINCT user_id) within the 7-day window. Finally I divide revenue by active users to compute roliing ARPU.
+
+**Business Question - 4**
+
+For each day, calculate the conversion rate from view → purchase within the same day.
+
+Definitions:
+
+A user is counted as viewed on a day if they have at least one view event that day.
+
+A user is counted as converted if they have at least one purchase event on the same day, regardless of order.
+
+Conversion rate:
+
+(# of users with both view and purchase on that day)
+/
+(# of users with view on that day)
+
+Assumptions:
+
+Users can have multiple events per day.
+
+Events can occur in any order within the day.
+
+Ignore users who only purchased without viewing.
+
+```
+table name: events
+columns: user_id, event_name (view, add_to_cart, purchase), event_time
+```
+
+**Answer - 4**
+
+```sql
+with user_events as (
+    select cast(event_time as date) as event_date, user_id,
+    case(when max(event_name) = 'view' then 1 else 0 end) as view_flag,
+    case(when max(event_name) = 'purchase' then 1 else 0 end) as purchase_flag
+    from events
+    group by cast(event_time as date), user_id
+)
+select event_date,
+count(distinct (case when view_flag = 1 then user_id end)) as total_viewed_users,
+count(distinct (case when view_flag = 1 and purchase_flag = 1 then user_id end)) as total_purchased_users,
+round((count(distinct (case when view_flag = 1 and purchase_flag = 1 then user_id end))*1.0)/count(distinct (case when view_flag = 1 and purchase_flag = 1 then user_id end)),2) as same_day_conversion_rate
+from user_events
+group by event_date
+order by event_date
 
 ```
 
 **Summary**
 
-> I constructed a day-level table where each row represents a reporting day, joined to all the orders in its 7-day lookback window. Then I calculated revenue by summing all the order amounts but users are counted using COUNT(DISTINCT user_id) within the 7-day window. Finally I divide revenue by active users to compute roliing ARPU.
+> “I first collapse the data to one row per user per day, flagging whether the user had a view and whether they had a purchase that day. Then, for each day, I count users with a view as the denominator and users with both view and purchase as the numerator to compute the conversion rate.
