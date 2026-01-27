@@ -220,3 +220,50 @@ order by event_date
 **Summary**
 
 > “I first collapse the data to one row per user per day, flagging whether the user had a view and whether they had a purchase that day. Then, for each day, I count users with a view as the denominator and users with both view and purchase as the numerator to compute the conversion rate.
+
+**Business Question - 5**
+
+For each day, calculate the number of active subscribers.
+
+Definitions:
+
+A user is active on a day if:
+
+start_date ≤ day, and
+
+(end_date is NULL or end_date ≥ day)
+
+Count distinct users.
+
+Use calendar days.
+
+Assumptions:
+
+A user can have multiple subscription records over time.
+
+Subscriptions do not overlap for the same user.
+
+You may assume the data spans multiple months.
+
+```
+table_name: subscriptions
+columns: user_id, start_date, end_date, plan_type
+```
+
+**Answer - 5**
+
+with calendar_table as (
+select generate_series (
+(SELECT min(start_date) from subscriptions),
+(SELECT MAX(COALESCE(end_date, CURRENT_DATE)) from subscriptions),
+INTERVAL '1 day'
+) as reporting_date
+)
+select reporting_date, count(distinct user_id) as active_users
+from calendar_table c
+left join subscriptions s on c.reporting_date >= start_date and (end_date >= c.reporting_date or end_date is null)
+group by reporting_date
+
+**Summary**
+
+> I’d create a calendar table covering the full date range. Then I’d join each calendar day to subscriptions where the day falls between the subscription’s start and end dates, treating NULL end dates as still active. Finally, I’d count distinct users per day to get active subscribers.
