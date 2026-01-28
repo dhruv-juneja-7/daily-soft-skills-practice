@@ -35,3 +35,27 @@
 ## Answer - 4
 
 > I had a situation when I noticed the disqualified leads were unusually high, the stakeholder challenged it. I worked with them to investigate and discovered that when lead ownership was recently reassigned, the “modified” date changed, distorting the count. To resolve it, I created a new column that reflected the original disqualification date from audit history. Once we used that, the figures aligned with reality. This approach showed the stakeholder that I take their concerns seriously, and we ended up with a more accurate dashboard.
+
+## Question - 5
+
+> Question: Tell me about a time when you failed.
+
+**Situation**
+
+“Earlier in my role, I was responsible for delivering a sales performance dashboard to stakeholders on a tight timeline.”
+
+**Task**
+
+“My goal was to provide quick visibility into lead-to-sale conversion so leadership could review performance before a monthly meeting.”
+
+**Action**
+
+“To meet the deadline, I prioritized speed and reused existing logic from an older dashboard. However, I didn’t spend enough time validating edge cases in the source data, especially around recently updated records.”
+
+**Result**
+
+“After release, stakeholders noticed some numbers didn’t fully align with their expectations. While the issue wasn’t business-critical, it reduced confidence in the dashboard initially. I took ownership, revalidated the data, corrected the logic, and communicated transparently about the fix.”
+
+**Learning / Improvement (very important)**
+
+“Since then, I’ve built a habit of adding a structured QC checklist before delivery—especially for date logic and status changes. This has significantly reduced post-release issues and improved stakeholder trust.”
