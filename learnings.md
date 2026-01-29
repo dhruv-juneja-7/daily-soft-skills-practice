@@ -271,10 +271,284 @@ You need:
 
 ---
 
-If you want next, we can:
+---
 
-- Drill this playbook on **3 different RCA questions**
-- Convert this into a **spoken script**
-- Do a **full mock interview** end-to-end
+# How to decide metrics?
 
-Just tell me how you want to continue.
+## Why defining metrics feels hard
+
+Most people think:
+
+> “I need to come up with the _right_ metrics.”
+
+What actually works:
+
+> **Metrics fall out _after_ you lock the goal + funnel stage.**
+
+Right now, you’re jumping straight from **problem → metrics**, skipping 2 steps.
+
+---
+
+## The 3-step trick that unlocks metrics 🔓
+
+Whenever you’re stuck, do this **in order**:
+
+### 1️⃣ Say the goal in ONE LINE
+
+Not “business growth”. Be concrete.
+
+Examples:
+
+- “Increase first-time investment”
+- “Improve retention after month 1”
+- “Reduce drop-offs post-KYC”
+
+If you can’t say this, metrics will feel impossible.
+
+---
+
+### 2️⃣ Name the ONE user action that proves success
+
+This is the magic step.
+
+Ask yourself:
+
+> “What did the user _do_ if we succeeded?”
+
+Examples:
+
+- Made first investment
+- Added funds again
+- Completed KYC
+- Increased AUM
+
+That action = **primary metric**.
+
+---
+
+### 3️⃣ Only now define supporting metrics
+
+Use this **always-safe template**:
+
+- **Rate** → how many users do it?
+- **Time** → how long does it take?
+- **Depth** → how much / how often?
+
+That’s it. That’s the formula.
+
+---
+
+## Apply this to your Dezerv case (live example)
+
+### Problem:
+
+Signups ↑, KYC stable, first investments flat
+
+### Step 1: Goal
+
+> Increase first-time investments
+
+### Step 2: Success action
+
+> User makes their first investment
+
+### Step 3: Metrics (using the template)
+
+#### ✅ Primary metric
+
+- % of KYC-completed users who make first investment
+
+#### ✅ Supporting metrics
+
+**Rate**
+
+- Conversion from KYC → first investment
+- Conversion by acquisition channel
+
+**Time**
+
+- Median time from KYC → first investment
+- % users investing within 7 / 30 days
+
+**Depth**
+
+- Average first investment amount
+
+Boom.
+You didn’t “invent” metrics — you _derived_ them.
+
+---
+
+## A cheat-sheet you can memorise (seriously)
+
+When stuck, say this sentence:
+
+> “I’d define one primary success metric tied to the user’s core action, and then supporting metrics around rate, time, and depth.”
+
+Interviewers LOVE this sentence.
+
+---
+
+## Why this works in interviews
+
+- You don’t sound random
+- You don’t overshoot
+- You sound calm and methodical
+- Even if metrics aren’t perfect, your _thinking is_
+
+They are **evaluating the process**, not the exact metric names.
+
+---
+
+## One last mindset shift (important)
+
+You are not expected to:
+❌ Define all metrics
+❌ Know company dashboards
+❌ Be exhaustive
+
+You ARE expected to:
+✅ Pick reasonable metrics
+✅ Explain _why_
+✅ Adjust if challenged
+
+That’s it.
+
+---
+
+## Let’s lock this in with a 30-second drill
+
+I’ll give you a tiny prompt. You answer **only metrics**, nothing else.
+
+**Prompt:**
+
+> “Users are completing KYC but not setting up SIPs.”
+
+Reply with:
+
+- Goal
+- Primary metric
+- 2–3 supporting metrics
+
+No overthinking. Just apply the template.
+
+Go 👇
+
+# How to decide hypotheses?
+
+## The “4-Bucket Hypothesis Framework” (memorise this)
+
+Whenever something goes wrong (drop, plateau, spike), **force all hypotheses into these buckets**:
+
+### 1️⃣ **WHO** – User quality / intent
+
+> “Are we getting the right users?”
+
+Examples:
+
+- Low-intent users from new channels
+- First-time investors are hesitant
+- Users just exploring, not ready to act
+
+---
+
+### 2️⃣ **WHAT** – Product / experience friction
+
+> “Is something in the flow stopping them?”
+
+Examples:
+
+- Too many steps post-KYC
+- Confusing fund selection
+- Minimum investment too high
+- Trust or security concerns
+
+---
+
+### 3️⃣ **WHY PAY** – Pricing / value perception
+
+> “Do users feel it’s worth it?”
+
+Examples:
+
+- Fees unclear or feel high
+- Value vs competitors not obvious
+- Incentives removed or weaker
+
+---
+
+### 4️⃣ **WHEN / OUTSIDE** – Timing & external factors
+
+> “Is this about context, not product?”
+
+Examples:
+
+- Market downturn
+- Seasonal behavior
+- Users delaying decisions
+
+---
+
+## Why this framework is powerful
+
+- You **never blank out**
+- You sound **structured, not scattered**
+- You don’t jump to solutions
+- Interviewers recognise this instantly
+
+Even if your hypotheses aren’t perfect, your **thinking is**.
+
+---
+
+## How to apply it in an interview (exact phrasing)
+
+Say this sentence (it’s gold):
+
+> “I’d bucket my hypotheses into user intent, product friction, pricing perception, and external factors.”
+
+Then list **1–2 hypotheses per bucket**.
+That’s all. Don’t overshoot.
+
+---
+
+## Apply this to YOUR Dezerv case (clean version)
+
+### Problem:
+
+KYC stable, first investment flat
+
+### Hypotheses:
+
+#### 1️⃣ User intent
+
+- New acquisition channels bring lower-intent users
+- First-time investors need more reassurance
+
+#### 2️⃣ Product friction
+
+- Drop-offs at fund selection or bank linking
+- Minimum investment amount creates hesitation
+
+#### 3️⃣ Pricing / value
+
+- Fees perceived as high at investment step
+- Value proposition not clear vs alternatives
+
+#### 4️⃣ External
+
+- Market volatility delaying investment decisions
+
+This is **textbook good**.
+
+---
+
+## How to test hypotheses (1-liner rule)
+
+If asked “how would you test this?”:
+
+- WHO → segment by channel / cohort
+- WHAT → step-level funnel analysis
+- WHY PAY → drop-offs at fee exposure
+- WHEN → trend vs time / market data
+
+---
