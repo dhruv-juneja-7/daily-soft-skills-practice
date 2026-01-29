@@ -152,3 +152,11 @@ Based on facts (not imagination):
 - Android-specific bugs or performance issues in the new flow
 
 - Payment failures or reduced payment option visibility, especially in India
+
+> Validate hypothesis and Actions
+
+To validate this, I’d first segment the checkout funnel by platform and user type and identify which step saw the largest drop-off post-launch. If the drop is concentrated at the payment step, I’d compare payment failure rates and payment method distribution before and after the redesign.
+
+In parallel, I’d check Android-specific crash rates during checkout. If crashes or failures increased meaningfully for new Android users, the implication would be to roll back or hotfix the checkout changes for that cohort.
+
+My goal would be to isolate the exact step causing the drop and recommend a targeted fix rather than reverting the entire redesign.
