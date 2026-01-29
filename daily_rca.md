@@ -92,3 +92,63 @@ My goal is to quantify impact and recommend whether to pause, adjust, or scale t
 **Reasons for ARPU reduction**
 
 ARPU can decline if users are paying less per subscription due to pricing or plan mix changes.
+
+## Question - 2
+
+“Over the past two weeks, the number of completed checkouts on our e-commerce app has dropped by 18%, but traffic to the app is unchanged. Leadership wants to know why this is happening and what to do next.”
+
+## Answer - 2
+
+> Calrifying Questions
+
+- Are we seeing this across all product categories, or is it concentrated in specific categories like fashion or electronics?
+- Is the decline seen for a particular segment of users like existing vs new customers or a particular geography.
+- Were there any recent product, UX, or operational changes that coincided with the decline?
+
+> Interviewer Responses
+
+- Product category
+
+  This is a general marketplace e-commerce app selling fashion, electronics, and home goods. No category-level changes were intentionally made.
+
+- Segmentation
+
+  The checkout drop is much higher for new users than existing users.
+
+  It is more pronounced on Android than iOS.
+
+  Geography-wise, it’s strongest in India, with other regions relatively stable.
+
+- Recent changes
+
+  About two weeks ago, the team redesigned the checkout flow to reduce steps.
+
+  No price changes or promotions were launched during this period.
+
+> Next Steps:
+
+1. Restate the problem
+
+2. Identify where in the funnel the drop occurs
+
+3. List your top hypotheses
+
+4. Say how you would validate the first hypothesis and why
+
+> Restate the problem
+
+Let me restate the problem to ensure alignment. Checkout completions are down 18% over the last two weeks, while traffic is unchanged. The decline is driven primarily by new users on Android in India and coincides with a checkout flow redesign.
+
+> Anchor to the funnel
+
+Given traffic is flat, this is a mid-to-lower funnel issue, likely within the checkout flow itself.
+
+> State 2–3 High-Probability Hypotheses
+
+Based on facts (not imagination):
+
+- UX friction introduced in the redesigned checkout, disproportionately affecting new users
+
+- Android-specific bugs or performance issues in the new flow
+
+- Payment failures or reduced payment option visibility, especially in India
