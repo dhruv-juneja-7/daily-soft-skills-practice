@@ -1,3 +1,17 @@
+## Introduction
+
+> Tell me about yourself.
+
+## Answer
+
+Hi, I’m [Your Name]. I have around three years of experience working in product and business analytics.
+
+In my current role, I work closely with sales and operations teams, mainly on Microsoft Dynamics and Power BI. My work involves maintaining and enhancing the CRM platform, building dashboards using Dataverse data, and tracking the full sales funnel—from leads to opportunities to closed deals.
+
+A key part of my role is ensuring data accuracy and turning complex workflows into clear, actionable insights for stakeholders. I regularly work on funnel metrics, conversion rates, sales performance, and revenue tracking, and I support leadership with data for decision-making.
+
+Overall, I enjoy roles where I can combine data problem-solving with business understanding and stakeholder collaboration.”
+
 ## Question-1
 
 > Can you briefly describe a recent project you worked on and explain your role in it

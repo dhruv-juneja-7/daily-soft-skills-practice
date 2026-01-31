@@ -267,3 +267,115 @@ group by reporting_date
 **Summary**
 
 > I’d create a calendar table covering the full date range. Then I’d join each calendar day to subscriptions where the day falls between the subscription’s start and end dates, treating NULL end dates as still active. Finally, I’d count distinct users per day to get active subscribers.
+
+**Business Question - 6**
+
+Find the top 10 employees by average daily working hours for a given month (say, September 2025).
+
+Definitions & Assumptions
+
+A working day starts with a punch_in and ends with a punch_out.
+
+An employee can have multiple punch-in / punch-out pairs in a day (e.g., breaks).
+
+Working hours for a day = sum of all (punch_out − punch_in) intervals for that day.
+
+```
+Average daily working hours =
+
+(total working hours in the month)
+/
+(number of days the employee worked in that month)
+```
+
+Ignore incomplete pairs (e.g., punch_in without a punch_out).
+
+Use calendar days based on event_timestamp.
+
+**Answer - 5**
+
+```sql
+with arranged_data as (
+select employee_id,
+event_timestamp as in_time,
+event_type as in_type,
+lead(event_timestamp) over(partition by employee_id order by event_timestamp) as out_time,
+lead(event_type) over(partition by employee_id order by event_timestamp) as out_type
+from employee_attendance
+where cast(event_timestamp as date) between '2025-09-01' and '2025-09-30'
+),
+hours as (
+select employee_id, sum(EXTRACT(EPOCH FROM (out_time - in_time))/3600.0) as total_hours_spent, cast(in_time as date) as in_date
+from arranged_data
+where out_type = 'punch_out' and in_type = 'punch_in'
+group by employee_id, cast(in_time as date))
+select employee_id, avg(total_hours_spent) as avg_hours_spent
+from hours
+group by employee_id
+order by avg_hours_spent desc
+limit 10
+```
+
+**Summary**
+I first filter events to the target month and order them by timestamp per employee. Then I use LEAD to pair each punch-in with the next event and keep only valid punch-in to punch-out pairs. I sum these intervals to get total working hours per employee per day. Finally, I average daily hours per employee for the month and rank them to get the top 10.
+
+**ALTERNATIVE APPROACH**
+
+```sql
+WITH in_times AS (
+    SELECT
+        employee_id,
+        event_timestamp AS in_time,
+        LEAD(event_timestamp) OVER (
+            PARTITION BY employee_id
+            ORDER BY event_timestamp
+        ) AS next_in_time,
+        CAST(event_timestamp AS DATE) AS in_date
+    FROM employee_attendance
+    WHERE event_type = 'punch_in'
+      AND event_timestamp >= '2025-09-01'
+      AND event_timestamp <  '2025-10-01'
+),
+out_times AS (
+    SELECT
+        employee_id,
+        event_timestamp AS out_time,
+        CAST(event_timestamp AS DATE) AS out_date
+    FROM employee_attendance
+    WHERE event_type = 'punch_out'
+      AND event_timestamp >= '2025-09-01'
+      AND event_timestamp <  '2025-10-01'
+),
+matched_intervals AS (
+    SELECT
+        i.employee_id,
+        i.in_date,
+        i.in_time,
+        MIN(o.out_time) AS out_time
+    FROM in_times i
+    LEFT JOIN out_times o
+      ON i.employee_id = o.employee_id
+     AND o.out_time > i.in_time
+     AND (i.next_in_time IS NULL OR o.out_time < i.next_in_time)
+    GROUP BY
+        i.employee_id,
+        i.in_date,
+        i.in_time
+),
+daily_hours AS (
+    SELECT
+        employee_id,
+        in_date,
+        SUM(EXTRACT(EPOCH FROM (out_time - in_time)) / 3600.0) AS daily_hours
+    FROM matched_intervals
+    WHERE out_time IS NOT NULL
+    GROUP BY employee_id, in_date
+)
+SELECT
+    employee_id,
+    AVG(daily_hours) AS avg_daily_hours
+FROM daily_hours
+GROUP BY employee_id
+ORDER BY avg_daily_hours DESC
+LIMIT 10;
+```
