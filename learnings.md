@@ -85,7 +85,6 @@ Plain English:
 
 # 🧠 Product Analyst Interview Mental Playbook (1 Page)
 
----
 
 ## 1️⃣ First 15 Seconds: Take Control
 
@@ -268,8 +267,6 @@ You need:
 ✅ structure
 ✅ calm delivery
 ✅ clear decision flow
-
----
 
 ---
 

@@ -73,3 +73,41 @@ Overall, I enjoy roles where I can combine data problem-solving with business un
 **Learning / Improvement (very important)**
 
 “Since then, I’ve built a habit of adding a structured QC checklist before delivery—especially for date logic and status changes. This has significantly reduced post-release issues and improved stakeholder trust.”
+
+## Question - 6
+
+> Tell me about your first project at Saarthee.
+
+## Answer - 6
+
+“At Saarthee, I worked on a Campaign Operations project for Comcast, where we supported analytics for their digital marketing campaigns.
+
+The objective was to track campaign performance and help marketing stakeholders understand which campaigns were driving engagement and conversions.
+
+We worked with campaign-level datasets running into a few million records per refresh, covering impressions, clicks, conversions, and customer attributes. My role involved validating and aggregating this data using SQL, and supporting KNIME-based ETL pipelines that prepared curated datasets for Tableau dashboards.
+
+In terms of metrics, we focused on CTR, conversion rate, cost per conversion, campaign ROI, and drop-offs across the impression-to-conversion funnel.
+
+I was responsible for refreshing and enhancing Tableau dashboards, troubleshooting data mismatches, and ensuring metric consistency across reports so stakeholders could confidently make campaign optimisation decisions.”
+
+### Follow-up Questions
+
+1. “Where exactly did you use SQL?”
+
+   > “I used SQL mainly for data validation and aggregation — joining campaign metadata with performance logs, calculating CTRs and conversion rates, and checking anomalies before the data flowed into KNIME pipelines.”
+
+2. “What kind of enhancements did you do?”
+
+   > “Most enhancements were driven by stakeholder questions — adding funnel breakdowns, campaign comparisons, trend views, and improving dashboard performance by optimising calculated fields.”
+
+3. “Why did this project end / move away from you?”
+
+   > “This was a client-driven engagement. After Comcast restructured their internal analytics ownership, the scope was reduced and our team was reallocated to other projects.”
+
+## Question - 7
+
+> Tell us something about yourself that’s not related to work
+
+## Answer - 7
+
+> Outside of work, I focus a lot on personal development. I read regularly, learn new technical skills, and stay active through aerobic exercises, which helps me maintain both physical and mental balance. On weekends, I like watching sci-fi and suspense movies to unwind. Overall, I enjoy continuously improving myself and staying curious.

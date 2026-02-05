@@ -160,3 +160,37 @@ To validate this, I’d first segment the checkout funnel by platform and user t
 In parallel, I’d check Android-specific crash rates during checkout. If crashes or failures increased meaningfully for new Android users, the implication would be to roll back or hotfix the checkout changes for that cohort.
 
 My goal would be to isolate the exact step causing the drop and recommend a targeted fix rather than reverting the entire redesign.
+
+## Question - 3
+
+"Over the last month, average session duration on our food delivery app has increased by 20%, but the number of orders placed per day has declined by 10%."
+
+## Answer - 3
+
+### Step - 1 Clarifying Questions
+
+1. Scope - Is this behavior uniform, or concentrated across specific users like experienced vs new, platform like ios vs android and geography?
+2. Metric - How do you define average session duration?
+3. Timeline - Was there a recent change during this month?
+
+### Step - 2 Restate the problem
+
+> Let me rephrase the problem to ensure alignment. So the average session duration has gone up by 20% in the last month and there has been a decline in daily orders by 10% primarily among new users and almost similar on IOS and Android. This change coincides with the launch of a new discovery feed.
+
+### Step - 3 Identify the part of the funnel
+
+> This suggests higher engagement but lower conversion, indicating a mid to lower funnel issue rather than acquisition.
+
+### Step - 4 Hypothesis
+
+1. My top hypothesis is that the new discovery feed is increasing browsing behavior but diluting purchase intent for new users.
+
+2. A secondary hypothesis is that the feed is causing choice overload, making it harder for users to decide and move to checkout.
+
+### Step - 5 Validating using metrics
+
+> To validate this, I’d first compare funnel conversion rates from restaurant view to add-to-cart and add-to-cart to order, before and after the feed launch, specifically for new users. If conversion dropped while time spent per step increased, it would support the intent-dilution hypothesis.
+
+### Step - 6 Solution
+
+> If confirmed, the implication would be to adjust the feed to surface order-ready options more prominently or introduce stronger CTAs (Call to Actions) that guide users from discovery to checkout.”
