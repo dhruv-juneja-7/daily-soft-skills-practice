@@ -162,13 +162,32 @@ order by start_date
 
 > So, we have to use a partition by because we want the row_number (our local clock) to stop when the state is not the same while the actual dates ( the master clock) continues. This will treat two same period_states as part of different groups.
 
-with groupings as (
-select id, login_date,
-login_date - row_number() over(partition by id order by login_date) _ INTERVAL '1 day' as groups
-from logins
+### LC 180 Consecutive Numbers.
+
+```sql
+with lag_table as (
+    select id, num, lag(num) over(order by id) as lag_num
+    from logs
+),
+indicators as (
+    select id, num, lag_num,
+    case when lag_num is null or num - lag_num = 0 then 0 else 1 end as ind
+    from lag_table
+),
+groups as (
+    select id, num, ind, sum(ind) over(order by id) as group_id
+    from indicators
 )
-select l.id, a.name
-from groupings l
-join accounts a on l.id = a.id
-group by l.id, a.name, groups
-having count(_) >= 5
+select distinct num
+from groups
+group by num, group_id
+having count(*) >= 3
+```
+
+## learnings Day 4
+
+> Report Contiguous Dates : Islands question. For this my main lesson was to understand the ;ogic using two clock method where the actual date is the master cl;ock and the row_number is the local clock. The local clock should reset on each partition while the master clock should move continuously
+
+> Active Users : Island question. For this my main lesson was to think which cte are at each step and how will rach row look in them and write the column names in each cte beforehand
+
+> Consecutive numbers : Island problem. I solved it using my lag value, indicator and rolling sum to find group id approach. Lesson here if the consecutive value is 3 or 4 then use lead, lag instead of making groups to make the query faster.

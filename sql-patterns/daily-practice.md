@@ -183,3 +183,17 @@ from groups
 group by num, group_id
 having count(*) >= 3
 ```
+
+> Consecutive numbers using lead and lag approach
+
+```sql
+with lead_lag as (
+select id, num,
+lead(num) over (order by id) as lead_num,
+lag(num) over (order by id) as lag_num
+from logs
+)
+select distinct num
+from lead_lag
+where num = lead_num and num = lag_num;
+```
