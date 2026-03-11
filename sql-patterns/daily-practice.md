@@ -197,3 +197,68 @@ select distinct num
 from lead_lag
 where num = lead_num and num = lag_num;
 ```
+
+### LC 1204 Last Person to Fit on the Bus
+
+```sql
+with cumulative_sum as (
+    select person_id, person_name, person_weight,
+    sum(person_weight) over (order by turn) as total_weight
+    from queue
+)
+
+select person_name
+from cumulative_sum
+where total_weight <= 1000
+order by total_weight desc
+
+```
+
+## LC 1867 Orders With Maximum Quantity Above Average
+
+```sql
+with groupings as (
+    select order_id, max(quantity) as max_qty, (sum(quantity)*1.0)/count(distinct product_id) as avg_qty
+    from orderdetails
+    group by order_id
+),
+max_avg as (
+    select max(avg_qty) as max_avg_qty from groupings
+)
+select distinct order_id
+from groupings g
+cross join max_avg m
+where max_qty > max_avg_qty
+```
+
+## LC 185 Department Top 3 Salaries
+
+```sql
+with ranks as (
+    select id, name, salary , department_id,
+    dense_rank() over(partition by department_id order by salary desc) as rn
+    from employee
+)
+select d.name as department, r.name as employee, salary
+from ranks r
+join department d on r.department_id = d.id
+where rn <= 3
+order by department, salary desc, name
+```
+
+## LC 262 — Trips and Users
+
+```sql
+with banned_filter as (
+    select id, client_id, driver_id, status, request_at, u.banned as client_banned, u2.banned as driver_banned
+    from trips t
+    left join users u on t.client_id = u.user_id
+    left join users u2  on t.driver_id = u2.user_id
+    where request_at >= '2013-10-01' and request_at <= '2013-10-03'
+)
+select request_at as day, round((sum(case when status = 'cancelled_by_client' or status = 'cancelled_by_driver' then 1 else 0 end)*1.0)/count(*),2) as cancellation_rate
+from banned_filter
+where client_banned = 'No' and driver_banned = 'No'
+group by request_at
+order by day
+```
